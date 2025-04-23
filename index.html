@@ -65,7 +65,7 @@
         const CANVAS_HEIGHT = 500;    // 캔버스 세로 크기
 
         // 배경 스크롤 속도
-        const BG_MOVING_SPEED = 4;
+        const BG_MOVING_SPEED = 5;
 
         // 러너(르탄이) 설정
         const RUNNER_WIDTH = 100;
@@ -96,7 +96,7 @@
                 gameStart: './images/gamestart.png',
                 gameOver: './images/gameover.png',
                 restart: './images/restart.png',
-                runnerA: './images/jimin-sit.png',
+                runnerA: './images/jimin-sitpng',
                 runnerB: './images/jimin-fly.png',
                 runnerCrash: './images/jimin-crash.png',
                 obstacle: './images/obstacle1.png'
@@ -156,7 +156,7 @@
                     if (gameOver) {
                         ctx.drawImage(crashImage, this.x, this.y, this.width, this.height);
                     } else {
-                        const frame = (timer % 60 > 30) ? runnerAImage : runnerBImage;
+                        const frame = jump ? runnerBImage : runnerAImage;
                         ctx.drawImage(frame, this.x, this.y, this.width, this.height);
                     }
                 }
@@ -277,7 +277,7 @@
 </head>
 
 <body>
-    <p id="subtitle">날아라 안지민!</p>
+    <p id="subtitle">르탄이와 함께 최고점을 향하여!! 😀</p>
     <p id="score">현재점수: 0</p>
     <main>
         <canvas id="canvas"></canvas>
