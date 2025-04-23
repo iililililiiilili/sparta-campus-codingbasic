@@ -128,6 +128,7 @@
             let gameStarted = false;
             let gameOver = false;
             let timer = 0;
+            let currentBgIndex = 0;
             let score = 0;
             let jump = false;
             let bgX = 0;
@@ -140,7 +141,16 @@
             const defeatSound = new Audio(ASSETS.sounds.defeat);
 
             // 이미지 로드
-            const bgImage = new Image(); bgImage.src = ASSETS.images.background;
+            const bgImages = [
+                new Image(),
+                new Image(),
+                new Image(),
+                new Image()
+            ];
+            bgImages[0].src = './images/background-dy2.png';
+            bgImages[1].src = './images/background-dy3.png';
+            bgImages[2].src = './images/background-dy4.png';
+            bgImages[3].src = './images/background4.png';
             const startImage = new Image(); startImage.src = ASSETS.images.gameStart;
             const gameoverImage = new Image(); gameoverImage.src = ASSETS.images.gameOver;
             const restartImage = new Image(); restartImage.src = ASSETS.images.restart;
@@ -187,7 +197,8 @@
             const obstacles = [];
 
             function backgroundImg(x) {
-                ctx.drawImage(bgImage, x, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                const bg = bgImages[currentBgIndex];
+                ctx.drawImage(bg, x, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             }
 
             function drawStartScreen() {
@@ -235,6 +246,12 @@
                         scoreText.textContent = '현재점수: ' + score;
                         scoreSound.currentTime = 0;
                         scoreSound.play();
+
+                        // 배경 전환 (20개 200점마다)
+                        if (score % 200 === 0) {
+                            currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+                        }
+                     }
                     }
                     if (isCollision(runner, obs)) {
                         gameOver = true;
