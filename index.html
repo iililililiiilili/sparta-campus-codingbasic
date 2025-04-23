@@ -243,14 +243,19 @@
 
             // 이벤트 처리
             document.addEventListener('keydown', e => {
-                if (e.code === 'Space' && !jump) {
-                    jump = true;
-                    jumpSound.play();
-                }
-            });
-            document.addEventListener('keyup', e => {
-                if (e.code === 'Space') jump = false;
-            });
+    if (e.code === 'Space') {
+        if (!jump) {
+            jumpSound.play();
+        }
+        jump = true;
+    }
+});
+
+document.addEventListener('keyup', e => {
+    if (e.code === 'Space') {
+        jump = false; //
+    }
+});
             canvas.addEventListener('click', e => {
                 const rect = canvas.getBoundingClientRect();
                 const x = e.clientX - rect.left;
