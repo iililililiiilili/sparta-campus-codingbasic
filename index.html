@@ -65,7 +65,7 @@
         const CANVAS_HEIGHT = 500;    // 캔버스 세로 크기
 
         // 배경 스크롤 속도
-        const BG_MOVING_SPEED = 5;
+        const BG_MOVING_SPEED = 2.5;
 
         // 러너(르탄이) 설정
         const RUNNER_WIDTH = 100;
@@ -256,7 +256,7 @@
                         // 배경 전환 (20개 200점마다)
                         if (score % 200 === 0) {
                             currentBgIndex = (currentBgIndex + 1) % bgImages.length;
-                            obstacleSpeed += 3;
+                            obstacleSpeed += 6;
                         }
                     }
                     if (isCollision(runner, obs)) {
