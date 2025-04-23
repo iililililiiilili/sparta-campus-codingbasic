@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -134,6 +134,7 @@
             let bgX = 0;
             const scoreText = document.getElementById('score');
             let obstacleSpeed = OBSTACLE_SPEED;
+            let obstacleFrequency = OBSTACLE_FREQUENCY;
 
             // 오디오 로드
             const jumpSound = new Audio(ASSETS.sounds.jump);
@@ -237,13 +238,11 @@
                 ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 timer++;
 
-                backgroundImg(bgX);
-                backgroundImg(bgX + CANVAS_WIDTH);
-                bgX -= BG_MOVING_SPEED;
-                if (bgX < -CANVAS_WIDTH) bgX = 0;
-                bgmSound.play();
+                backgroundImg(0);
 
-                if (timer % OBSTACLE_FREQUENCY === 0) obstacles.push(new Obstacle());
+                if (timer % obstacleFrequency === 0) {
+                    obstacles.push(new Obstacle());
+                }
                 obstacles.forEach((obs, idx) => {
                     obs.draw(); obs.x -= obstacleSpeed;
                     if (obs.x < -OBSTACLE_WIDTH) {
@@ -257,6 +256,7 @@
                         if (score % 200 === 0) {
                             currentBgIndex = (currentBgIndex + 1) % bgImages.length;
                             obstacleSpeed = OBSTACLE_SPEED + Math.floor(score / 100);
+                            obstacleFrequency = Math.max(30, OBSTACLE_FREQUENCY - Math.floor(score / 100));
                         }
                     }
                     if (isCollision(runner, obs)) {
