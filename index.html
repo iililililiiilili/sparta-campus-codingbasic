@@ -249,9 +249,7 @@
                 }
             });
             document.addEventListener('keyup', e => {
-                if (e.code === 'Space')  isJumping = false;
-                character = "jimin-sit.png";
-                }
+                if (e.code === 'Space') jump = false;
             });
             canvas.addEventListener('click', e => {
                 const rect = canvas.getBoundingClientRect();
