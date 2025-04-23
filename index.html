@@ -147,22 +147,21 @@
                 new Image(),
                 new Image()
             ];
-            const startImage = new Image();
-            let bgLoaded = false;
-            let startLoaded = false;
-            bgImages[0].onload = () => {
-                bgLoaded = true;
-                if (startLoaded) drawStartScreen();
-            };
-            startImage.onload = () => {
-                startLoaded = true;
-                if (bgLoaded) drawStartScreen();
-            };
             bgImages[0].src = './images/background-dy2.png';
             bgImages[1].src = './images/background-dy3.png';
             bgImages[2].src = './images/background-dy4.png';
             bgImages[3].src = './images/background-dy5.png';
+            
+            const startImage = new Image();
             startImage.src = ASSETS.images.gameStart;
+
+            Promise.all([
+                ...bgImages.map(img => new Promise(res => img.onload = res)),
+                new Promise(res => startImage.onload = res)
+            ]).then(() => {
+                drawStartScreen();
+            });
+
             const gameoverImage = new Image(); gameoverImage.src = ASSETS.images.gameOver;
             const restartImage = new Image(); restartImage.src = ASSETS.images.restart;
             const runnerAImage = new Image(); runnerAImage.src = ASSETS.images.runnerA;
