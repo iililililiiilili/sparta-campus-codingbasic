@@ -227,7 +227,7 @@
                         scoreSound.play();
                     }
                     if (isCollision(runner, obs)) {
-                        gameOver = false;
+                        gameOver = true;
                         bgmSound.pause();
                         defeatSound.play();
                     }
@@ -249,7 +249,9 @@
                 }
             });
             document.addEventListener('keyup', e => {
-                if (e.code === 'Space') jump = false;
+                if (e.code === 'Space')  isJumping = false;
+                character.style.backgroundImage = "jimin-sit.png";
+                }
             });
             canvas.addEventListener('click', e => {
                 const rect = canvas.getBoundingClientRect();
