@@ -256,7 +256,7 @@
                         // 배경 전환 (20개 200점마다)
                         if (score % 200 === 0) {
                             currentBgIndex = (currentBgIndex + 1) % bgImages.length;
-                            obstacleSpeed += 6;
+                            obstacleSpeed = OBSTACLE_SPEED + Math.floor(score / 100);
                         }
                     }
                     if (isCollision(runner, obs)) {
