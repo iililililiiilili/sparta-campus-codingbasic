@@ -99,7 +99,9 @@
                 runnerA: './images/jimin-sit.png',
                 runnerB: './images/jimin-fly.png',
                 runnerCrash: './images/jimin-crash.png',
-                obstacle: './images/obstacle1.png'
+                obstacle1: './images/jimin-airplane.png'
+                obstacle2: './images/jimin-bird.png'
+
             }
         };
 
@@ -145,7 +147,12 @@
             const runnerAImage = new Image(); runnerAImage.src = ASSETS.images.runnerA;
             const runnerBImage = new Image(); runnerBImage.src = ASSETS.images.runnerB;
             const crashImage = new Image(); crashImage.src = ASSETS.images.runnerCrash;
-            const obstacleImage = new Image(); obstacleImage.src = ASSETS.images.obstacle;
+            const obstacleImage = [
+              new Image(),
+              new Image()
+            ];
+            obstacleImages[0].src = ASSETS.images.obstacle1;
+            obstacleImages[1].src = ASSETS.images.obstacle2;
 
             const runner = {
                 x: RUNNER_START_X,
@@ -163,17 +170,19 @@
             };
 
             class Obstacle {
-                constructor() {
-                    this.x = CANVAS_WIDTH;
-                    this.y = Math.floor(Math.random() * (CANVAS_HEIGHT - OBSTACLE_HEIGHT - 30)) + 30;
-                    this.width = OBSTACLE_WIDTH;
-                    this.height = OBSTACLE_HEIGHT;
-                }
-                draw() {
-                    ctx.drawImage(obstacleImage, this.x, this.y, this.width, this.height);
-                }
-            }
+    constructor() {
+        this.x = CANVAS_WIDTH;
+        this.y = Math.floor(Math.random() * (CANVAS_HEIGHT - OBSTACLE_HEIGHT - 30)) + 30;
+        this.width = OBSTACLE_WIDTH;
+        this.height = OBSTACLE_HEIGHT;
 
+        const randIndex = Math.floor(Math.random() * obstacleImages.length);
+        this.image = obstacleImages[randIndex];
+    }
+
+    draw() {
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
             const obstacles = [];
 
             function backgroundImg(x) {
