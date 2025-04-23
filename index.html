@@ -133,6 +133,7 @@
             let jump = false;
             let bgX = 0;
             const scoreText = document.getElementById('score');
+            let obstacleSpeed = OBSTACLE_SPEED;
 
             // 오디오 로드
             const jumpSound = new Audio(ASSETS.sounds.jump);
@@ -153,7 +154,6 @@
             bgImages[3].src = './images/background-dy5.png';
             
             const startImage = new Image();
-            startImage.src = ASSETS.images.gameStart;
 
             Promise.all([
                 ...bgImages.map(img => new Promise(res => img.onload = res)),
@@ -161,6 +161,8 @@
             ]).then(() => {
                 drawStartScreen();
             });
+            startImage.src = ASSETS.images.gameStart;
+
 
             const gameoverImage = new Image(); gameoverImage.src = ASSETS.images.gameOver;
             const restartImage = new Image(); restartImage.src = ASSETS.images.restart;
@@ -243,7 +245,7 @@
 
                 if (timer % OBSTACLE_FREQUENCY === 0) obstacles.push(new Obstacle());
                 obstacles.forEach((obs, idx) => {
-                    obs.draw(); obs.x -= OBSTACLE_SPEED;
+                    obs.draw(); obs.x -= obstacleSpeed;
                     if (obs.x < -OBSTACLE_WIDTH) {
                         obstacles.splice(idx, 1);
                         score += SCORE_PER_OBSTACLE;
@@ -254,6 +256,7 @@
                         // 배경 전환 (20개 200점마다)
                         if (score % 200 === 0) {
                             currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+                            obstacleSpeed += 1;
                         }
                     }
                     if (isCollision(runner, obs)) {
