@@ -151,11 +151,7 @@
             bgImages[1].src = './images/background-dy3.png';
             bgImages[2].src = './images/background-dy4.png';
             bgImages[3].src = './images/background4.png';
-            const startImage = new Image(); 
-            startImage.onload = () => {
-                drawStartScreen(); // 여기서 바로 실행
-            };
-            startImage.src = ASSETS.images.gameStart;
+            const startImage = new Image(); startImage.src = ASSETS.images.gameStart;
             const gameoverImage = new Image(); gameoverImage.src = ASSETS.images.gameOver;
             const restartImage = new Image(); restartImage.src = ASSETS.images.restart;
             const runnerAImage = new Image(); runnerAImage.src = ASSETS.images.runnerA;
