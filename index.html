@@ -170,19 +170,20 @@
             };
 
             class Obstacle {
-    constructor() {
-        this.x = CANVAS_WIDTH;
-        this.y = Math.floor(Math.random() * (CANVAS_HEIGHT - OBSTACLE_HEIGHT - 30)) + 30;
-        this.width = OBSTACLE_WIDTH;
-        this.height = OBSTACLE_HEIGHT;
+                constructor() {
+                    this.x = CANVAS_WIDTH;
+                    this.y = Math.floor(Math.random() * (CANVAS_HEIGHT - OBSTACLE_HEIGHT - 30)) + 30;
+                    this.width = OBSTACLE_WIDTH;
+                    this.height = OBSTACLE_HEIGHT;
 
-        const randIndex = Math.floor(Math.random() * obstacleImages.length);
-        this.image = obstacleImages[randIndex];
-    }
+                    const randIndex = Math.floor(Math.random() * obstacleImages.length);
+                    this.image = obstacleImages[randIndex];
+                }
 
-    draw() {
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    }
+                draw() {
+                    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+                }
+            }
             const obstacles = [];
 
             function backgroundImg(x) {
