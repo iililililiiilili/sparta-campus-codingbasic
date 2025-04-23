@@ -256,7 +256,7 @@
                         if (score % 200 === 0) {
                             currentBgIndex = (currentBgIndex + 1) % bgImages.length;
                             obstacleSpeed = OBSTACLE_SPEED + Math.floor(score / 100);
-                            obstacleFrequency = Math.max(5, OBSTACLE_FREQUENCY - Math.floor(score / 20));
+                            obstacleFrequency = Math.max(3, OBSTACLE_FREQUENCY - Math.floor(score / 10));
                         }
                     }
                     if (isCollision(runner, obs)) {
