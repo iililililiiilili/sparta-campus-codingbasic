@@ -214,7 +214,10 @@
             }
 
             Promise.all([
-                new Promise(r => bgImage.onload = r),
+                new Promise(r => bgImages[0].onload = r),
+                new Promise(r => bgImages[1].onload = r),
+                new Promise(r => bgImages[2].onload = r),
+                new Promise(r => bgImages[3].onload = r),
                 new Promise(r => startImage.onload = r)
             ]).then(drawStartScreen);
 
