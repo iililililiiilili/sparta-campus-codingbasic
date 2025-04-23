@@ -147,6 +147,17 @@
                 new Image(),
                 new Image()
             ];
+            const startImage = new Image();
+            let bgLoaded = false;
+            let startLoaded = false;
+            bgImages[0].onload = () => {
+                bgLoaded = true;
+                if (startLoaded) drawStartScreen();
+            };
+            startImage.onload = () => {
+                startLoaded = true;
+                if (bgLoaded) drawStartScreen();
+            };
             bgImages[0].src = './images/background-dy2.png';
             bgImages[1].src = './images/background-dy3.png';
             bgImages[2].src = './images/background-dy4.png';
